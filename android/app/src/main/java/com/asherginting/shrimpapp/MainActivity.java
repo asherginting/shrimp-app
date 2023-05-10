@@ -1,4 +1,4 @@
-package com.shrimpapp;
+package com.asherginting.shrimpapp;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "shrimpApp";
+    return "Shrimp";
   }
 
   /**
