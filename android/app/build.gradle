@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.shrimpapp"
+    namespace "com.asherginting.shrimpapp"
     defaultConfig {
-        applicationId "com.shrimpapp"
+        applicationId "com.asherginting.shrimpapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

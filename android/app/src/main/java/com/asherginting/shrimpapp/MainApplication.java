@@ -1,4 +1,4 @@
-package com.shrimpapp;
+package com.asherginting.shrimpapp;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
