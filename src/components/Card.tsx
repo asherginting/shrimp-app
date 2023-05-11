@@ -1,33 +1,41 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import Colors from '../utils/colors';
+import moment from 'moment';
 
 interface Cards {
-  img: number;
+  img: any;
   title: string;
   desc: string;
   date: string;
-  onPress?: () => void;
+  onPressShare?: () => void;
+  onPressDetail?: () => void;
 }
 
-const Card = ({img, title, desc, date, onPress}: Cards) => {
+const Card = ({img, title, desc, date, onPressShare, onPressDetail}: Cards) => {
   return (
-    <View style={styles.viewCard}>
-      <Image source={img} style={styles.imgHeader} />
-      <View style={styles.viewContent}>
-        <Text style={styles.txtContent}>{title}</Text>
-        <Text style={styles.txtDesc}>{desc}</Text>
-        <View style={styles.viewBottom}>
-          <Text style={styles.txtDate}>{date}</Text>
-          <TouchableOpacity onPress={onPress}>
-            <Image
-              source={require('../assets/images/share.png')}
-              style={styles.iconShare}
-            />
-          </TouchableOpacity>
+    <TouchableOpacity onPress={onPressDetail}>
+      <View style={styles.viewCard}>
+        <Image source={img} style={styles.imgHeader} />
+        <View style={styles.viewContent}>
+          <Text style={styles.txtContent}>{title}</Text>
+          <Text style={styles.txtDesc} numberOfLines={2}>
+            {desc}
+          </Text>
+          <View style={styles.viewBottom}>
+            <Text style={styles.txtDate}>
+              {moment(date).format('DD MMMM YYYY')}
+            </Text>
+            <TouchableOpacity onPress={onPressShare}>
+              <Image
+                source={require('../assets/images/share.png')}
+                style={styles.iconShare}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -36,7 +44,7 @@ export default Card;
 const styles = StyleSheet.create({
   viewCard: {
     borderWidth: 1,
-    height: 350,
+    height: 300,
     marginHorizontal: 20,
     marginTop: 15,
     borderColor: Colors.softGray,
