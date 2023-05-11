@@ -11,6 +11,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import PriceList from '../screens/PriceList';
 import News from '../screens/News';
+import Disease from '../screens/Disease';
 import Colors from '../utils/colors';
 
 const Tab = createMaterialTopTabNavigator();
@@ -53,6 +54,19 @@ const TabNavigator = () => {
         options={{
           title: 'Kabar Udang',
           tabBarLabel: 'Kabar Udang',
+          tabBarLabelStyle: {
+            fontSize: 14,
+            fontFamily: 'Lato-Bold',
+            textTransform: 'capitalize',
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Disease"
+        component={Disease}
+        options={{
+          title: 'Penyakit',
+          tabBarLabel: 'Penyakit',
           tabBarLabelStyle: {
             fontSize: 14,
             fontFamily: 'Lato-Bold',
