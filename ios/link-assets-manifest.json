@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Fonts.js",
+      "sha1": "7641e50c9a745830b28798f88702e92a9d45143b"
+    },
+    {
+      "path": "src/assets/fonts/Lato-Black.ttf",
+      "sha1": "4fa7d5cfe0774c806f6e69bec9ea0dd6923cae26"
+    },
+    {
+      "path": "src/assets/fonts/Lato-Bold.ttf",
+      "sha1": "e87d99a300317fd927c0a512be856b3caf52d61f"
+    },
+    {
+      "path": "src/assets/fonts/Lato-Light.ttf",
+      "sha1": "1b062f93802e0e9f4b2028ef7556ffe4e5ed8c99"
+    },
+    {
+      "path": "src/assets/fonts/Lato-Regular.ttf",
+      "sha1": "06775847c3ad5bdc4525009f41aaf585bfcba4c2"
+    }
+  ]
+}
