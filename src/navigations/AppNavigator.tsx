@@ -11,6 +11,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import PriceList from '../screens/PriceList';
 import News from '../screens/News';
+import Colors from '../utils/colors';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -19,12 +20,12 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: '#1B77DF',
-        tabBarInactiveTintColor: '#737373',
+        tabBarActiveTintColor: Colors.blue,
+        tabBarInactiveTintColor: Colors.gray,
         tabBarIndicatorStyle: [
           {
             borderBottomWidth: 5,
-            borderBottomColor: '#1B77DF',
+            borderBottomColor: Colors.blue,
           },
         ],
         tabBarItemStyle: [
@@ -75,17 +76,17 @@ const AppNavigator = () => {
 
   const styles = StyleSheet.create({
     statusBar: {
-      backgroundColor: '#1B77DF',
+      backgroundColor: Colors.blue,
       height: insets.top,
     },
     header: {
-      backgroundColor: '#1B77DF',
+      backgroundColor: Colors.blue,
       height: headerHeight,
       justifyContent: 'center',
       alignItems: 'center',
     },
     headerTitle: {
-      color: '#FFFFFF',
+      color: Colors.white,
       fontSize: 18,
       fontWeight: 'bold',
       fontFamily: 'Lato-Bold',
@@ -95,7 +96,7 @@ const AppNavigator = () => {
 
   return (
     <View style={{flex: 1}}>
-      <StatusBar barStyle="light-content" backgroundColor="#1B77DF" />
+      <StatusBar barStyle="light-content" backgroundColor={Colors.blue} />
       <View style={styles.statusBar} />
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Shrimp - Budidaya Udang</Text>
