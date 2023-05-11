@@ -2,10 +2,6 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/Fonts.js",
-      "sha1": "7641e50c9a745830b28798f88702e92a9d45143b"
-    },
-    {
       "path": "src/assets/fonts/Lato-Black.ttf",
       "sha1": "4fa7d5cfe0774c806f6e69bec9ea0dd6923cae26"
     },
