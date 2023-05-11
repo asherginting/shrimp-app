@@ -3,18 +3,18 @@ import {Text, View, SafeAreaView, StyleSheet} from 'react-native';
 import Colors from '../utils/colors';
 import Card from '../components/Card';
 
-const News = () => {
+const Disease = () => {
   return (
     <SafeAreaView style={styles.bg}>
       <SafeAreaView>
         <View style={styles.viewTitle}>
-          <Text style={styles.txtTitle}>Kabar terbaru</Text>
+          <Text style={styles.txtTitle}>Daftar Penyakit</Text>
         </View>
         <View>
           <Card
             img={require('../assets/images/testImage.png')}
-            title="Baruno: Alat Kualitas Air Pintar Handal dan Praktis"
-            desc="Tahun 2019 telah berlalu, kini tahun 2020 telah memasuki minggu ketiga, memasuki tahun..."
+            title="Black Spot Disease (Bintik Hitam)"
+            desc="Tampak fisik pada udang ialah karapas berwarna kecoklatan dan adanya bercak hitam pada karapa..."
             date="30 April 2020"
           />
         </View>
@@ -23,7 +23,7 @@ const News = () => {
   );
 };
 
-export default News;
+export default Disease;
 
 const styles = StyleSheet.create({
   bg: {
