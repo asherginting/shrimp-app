@@ -1,24 +1,24 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, {useEffect} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {NativeBaseProvider} from 'native-base';
+import {NavigationContainer} from '@react-navigation/native';
 import SplashScreen from 'react-native-splash-screen';
+import AppNavigation from './src/navigations/AppNavigator';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-function App(): JSX.Element {
+const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
   return (
-    <SafeAreaView>
-      <Text>TEST</Text>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <NativeBaseProvider>
+          <AppNavigation />
+        </NativeBaseProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
-}
+};
 
 export default App;
