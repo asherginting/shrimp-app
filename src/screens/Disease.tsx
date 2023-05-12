@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import Colors from '../utils/colors';
 import Card from '../components/Card';
+import {API_URL, API_TOKEN} from '@env';
 
 interface Datas {
   id: string;
@@ -27,25 +28,21 @@ const Disease = () => {
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch(
-      'https://app.jala.tech/api/diseases?per_page=15&page=1',
-      {
-        headers: {
-          Authorization:
-            'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImMzNGQ5Nzg0ZjZhNzRjNmFlZjI1ODRlNjI5YmRiNDk5ZDIzNTNiNjQ1ZGMzM2QxNWM1MzJlMWRmZGNkNTFjNDFhZDA3MTY2Y2M0MjcwZGFjIn0.eyJhdWQiOiIxIiwianRpIjoiYzM0ZDk3ODRmNmE3NGM2YWVmMjU4NGU2MjliZGI0OTlkMjM1M2I2NDVkYzMzZDE1YzUzMmUxZGZkY2Q1MWM0MWFkMDcxNjZjYzQyNzBkYWMiLCJpYXQiOjE2NzA0NzE1NTcsIm5iZiI6MTY3MDQ3MTU1NywiZXhwIjoxNzAyMDA3NTU3LCJzdWIiOiI3NyIsInNjb3BlcyI6W119.de53bq9RIwzpyfWGRK4LPLwdnkQXLZm19Q7o6mx9pBrsGYaOhjuw55F0qBbO6e5WVCrz3VOeAgb8zcVc4JYFpLmzFihFamT3Uf7EuDpXx7xpleYVb1n14zX9XrNg2Bum8irjxXqADgJDDnjb4Yvjh_EZYMfwRBk5gJjIZ7r7KiW3rz3kVbthaoRy6aayPP2rz_PXDeGAkF-SV4nwfZXRUT1_YWuTPRfy9KN8RsK1msqQre1qlKJE1IDFPi8DXrHP8oLuN0XHa9babTFPcCg9xO88YKq4a46IqVMsl-qEyqAukA5dxcC73cFuFo8IOjt2m0toIz1wdZdShz-3IAgOpqwi-7WTJjFRwrdazBMgrHTl0sNiI4U6ONoVaPGlmUxVYmdRbQ2QZckXFAN6o6mwAwB_zxQsEg_CJYgZbCxAcNj9yXYaqtHNchj_1HlcvbE7LXBffLKmJ9jrXFg-3STGypwt35wkZiyS8JkoHLhTg_C2Efad4_wMWuPhSCirrqfq6HszD5dCRDG69cl1IMY-kkShzagQEz2KybFVhoCbC1oImYgqTsp_w81W9-v5gb23Z38AY9GdCEKOPMpIEg1DMaYQaTe8x6_1nRxf_XjsSBRQN935Qr2AKIGir9uox0hx-1Ji7wH2TwEyclYuf_0uMVCEOBpi2aImo5neMmWBggs',
-        },
+    const response = await fetch(`${API_URL}/api/diseases?per_page=15&page=1`, {
+      headers: {
+        Authorization: `Bearer ${API_TOKEN}`,
       },
-    );
+    });
     const json = await response.json();
     setData(json.data);
   };
 
   const openWebView = id => {
-    Linking.openURL(`https://app.jala.tech/web_view/diseases/${id}`);
+    Linking.openURL(`${API_URL}/web_view/diseases/${id}`);
   };
 
   const shareLink = id => {
-    const link = `https://app.jala.tech/diseases/${id}`;
+    const link = `${API_URL}/diseases/${id}`;
     Share.share({message: link});
   };
 
@@ -59,7 +56,7 @@ const Disease = () => {
           data={data}
           renderItem={({item}) => (
             <Card
-              img={{uri: `https://app.jala.tech/storage/${item.image}`}}
+              img={{uri: `${API_URL}/storage/${item.image}`}}
               title={item.full_name}
               desc={item.meta_description}
               date={item.created_at}
