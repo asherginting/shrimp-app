@@ -36,7 +36,7 @@ $ npm install or yarn install
 
 | Name | Link |
 | --- | --- |
-| Screen Record - Samsung Galaxy A71 (Android) | - |
-| Screen Record - Iphone 14 Pro Max (IOS) - Simulator | -  |
+| Screen Record - Samsung Galaxy A71 (Android) | https://drive.google.com/file/d/1sQJaQbOKaUaAv0i0HWycqeY6Z7_h1cBa/view?usp=share_link |
+| Screen Record - Iphone 14 Pro Max (IOS) - Simulator | https://drive.google.com/file/d/1qiOnewuYEHxAtDF2tsYdr0-hpFjxKBSW/view?usp=share_link  |
 | Build APK | - |
 
