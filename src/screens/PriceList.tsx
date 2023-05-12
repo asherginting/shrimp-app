@@ -17,51 +17,70 @@ const PriceList = () => {
   const [modalSize, setModalSize] = useState(false);
   const [modalLocation, setModalLocation] = useState(false);
   const [data, setData] = useState([]);
+  const [avatars, setAvatars] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      'https://app.jala.tech/api/shrimp_prices?per_page=15&page=${i}&with=region,creator&region_id=',
-    )
-      .then(response => response.json())
-      .then(data => {
-        setData(data.data);
-        console.log(data.data, 'DATA');
-        const shrimpPrices = data.data;
-        const avatars = shrimpPrices.map(
-          price => 'https://app.jala.tech/storage/' + price.creator.avatar,
+    const fetchData = async () => {
+      const allData = [];
+
+      for (let i = 1; i <= 15; i++) {
+        const response = await fetch(
+          `https://app.jala.tech/api/shrimp_prices?per_page=15&page=${i}&with=region,creator&region_id=`,
         );
-        setData(shrimpPrices);
-        console.log(avatars, 'AVATARS');
-      })
-      .catch(error => {
-        console.error(error);
-      });
+        const data = await response.json();
+        allData.push(...data.data);
+      }
+
+      const urls = allData.map(
+        price => 'https://app.jala.tech/storage/' + price.creator.avatar,
+      );
+      setAvatars(urls);
+      setData(allData);
+      setIsLoading(false);
+    };
+
+    fetchData();
   }, []);
 
   const renderItem = ({item, index}) => (
     <View style={styles.viewCard}>
       <View style={styles.viewItem}>
-        <Image source={{uri: item.avatars}} style={styles.img} />
+        <Image source={{uri: avatars[index]}} style={styles.img} />
         <View style={styles.viewTitle}>
           <Text style={styles.txtSupplier}>Supplier</Text>
-          <Text style={styles.txtTitle}>{item.supplier_name}</Text>
+          <Text style={styles.txtTitle}>{item.creator.name}</Text>
         </View>
         <View style={styles.viewVerif}>
-          <Text style={styles.txtVerif}>
-            {item.is_verified ? 'Terverifikasi' : ''}
-          </Text>
+          {item.creator.buyer ? (
+            <>
+              <View style={styles.verif}>
+                <Image
+                  source={require('../assets/images/star.png')}
+                  style={styles.iconVerif}
+                />
+                <Text style={styles.txtVerif}>Terverifikasi</Text>
+              </View>
+            </>
+          ) : (
+            <View style={styles.notverif}>
+              <Text style={styles.txtVerif}>Blm Terverifikasi</Text>
+            </View>
+          )}
         </View>
       </View>
       <View style={styles.viewList}>
         <Text style={styles.txtDate}>
           {moment(item.date).format('DD MMMM YYYY')}
         </Text>
-        <Text style={styles.txtKab}>{item.region.district}</Text>
+        <Text style={styles.txtKab}>{item.region.province_name}</Text>
         <Text style={styles.txtCity}>{item.region.name}</Text>
-        <Text style={styles.txtSize}>{item.size}</Text>
+        <Text style={styles.txtSize}>Size 100</Text>
       </View>
       <View style={styles.viewPrice}>
-        <Text style={styles.txtPrice}>{item.price}</Text>
+        <Text style={styles.txtPrice}>
+          IDR {item.size_100.toLocaleString('id-ID')}
+        </Text>
         <TouchableOpacity style={styles.btnDetail}>
           <Text style={styles.txtDetail}>LIHAT DETAIL</Text>
         </TouchableOpacity>
@@ -76,11 +95,17 @@ const PriceList = () => {
       </View>
 
       <View>
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-        />
+        {isLoading ? (
+          <Text style={{textAlign: 'center'}}>Loading...</Text>
+        ) : (
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+          />
+        )}
       </View>
 
       <ModalSize modalVisible={modalSize} setModalVisible={setModalSize} />
@@ -172,18 +197,44 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   viewVerif: {
-    backgroundColor: '#fff8e7',
-    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    position: 'absolute',
+    right: 0,
+  },
+  verif: {
+    flexDirection: 'row',
+    backgroundColor: Colors.orangLight,
+    height: 30,
     width: 130,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    marginLeft: 40,
+  },
+  notverif: {
+    backgroundColor: Colors.softGray,
+    height: 30,
+    width: 130,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+  },
+  iconVerif: {
+    height: 20,
+    width: 20,
   },
   txtVerif: {
     fontSize: 12,
     fontFamily: 'Lato-Bold',
     color: Colors.black,
+    marginLeft: 5,
+  },
+  txtNotVerif: {
+    fontSize: 12,
+    fontFamily: 'Lato-Bold',
+    color: Colors.black,
+    marginLeft: 5,
   },
   viewList: {
     marginHorizontal: 12,
