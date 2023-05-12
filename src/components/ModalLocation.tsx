@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Colors from '../utils/colors';
+import {API_URL} from '@env';
 
 interface ModalProps {
   modalVisible: boolean;
@@ -27,7 +28,7 @@ const ModalLocation: React.FC<ModalProps> = ({
 
       for (let i = 1; i <= 15; i++) {
         const response = await fetch(
-          `https://app.jala.tech/api/shrimp_prices?per_page=15&page=${i}&with=region,creator&region_id=`,
+          `${API_URL}/api/shrimp_prices?per_page=15&page=${i}&with=region,creator&region_id=`,
         );
         const data = await response.json();
         const cities = data.data.map(item => item.region.name);

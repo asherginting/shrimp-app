@@ -12,6 +12,7 @@ import Colors from '../utils/colors';
 import ModalSize from '../components/ModalSize';
 import ModalLocation from '../components/ModalLocation';
 import moment from 'moment';
+import {API_URL} from '@env';
 
 const PriceList = () => {
   const [modalSize, setModalSize] = useState(false);
@@ -26,14 +27,14 @@ const PriceList = () => {
 
       for (let i = 1; i <= 15; i++) {
         const response = await fetch(
-          `https://app.jala.tech/api/shrimp_prices?per_page=15&page=${i}&with=region,creator&region_id=`,
+          `${API_URL}/api/shrimp_prices?per_page=15&page=${i}&with=region,creator&region_id=`,
         );
         const data = await response.json();
         allData.push(...data.data);
       }
 
       const urls = allData.map(
-        price => 'https://app.jala.tech/storage/' + price.creator.avatar,
+        price => `${API_URL}/storage/` + price.creator.avatar,
       );
       setAvatars(urls);
       setData(allData);
