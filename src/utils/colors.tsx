@@ -7,6 +7,7 @@ const Colors = {
   softGray: '#E5E5E5',
   hardGray: '#454646',
   lightBlue: '#859ED1',
+  orangLight: '#fff8e7',
 };
 
 export default Colors;
